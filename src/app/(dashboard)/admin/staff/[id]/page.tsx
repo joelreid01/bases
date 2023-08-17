@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import UploadProfilePicture from "@/components/admin/upload-profile-picture";
+import UploadStaffProfilePicture from "@/components/admin/upload-staff-profile-picture";
 
 export default async function Page({
   params: { id },
@@ -34,7 +34,7 @@ export default async function Page({
 
   return (
     <div className="flex flex-col w-2/3 gap-8">
-      <UploadProfilePicture person={staffMember} />
+      <UploadStaffProfilePicture person={staffMember} />
 
       <div className="">
         <StaffForm

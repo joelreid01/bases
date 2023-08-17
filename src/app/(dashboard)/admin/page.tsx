@@ -1,4 +1,6 @@
+import { BoardMembersTable } from "@/components/admin/boardMembersTable";
 import { StaffMembersTable } from "@/components/admin/staffMembersTable";
+import { Separator } from "@/components/ui/separator";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -11,8 +13,11 @@ export default async function Page() {
   }
 
   return (
-    <div className="px-auto py-16 flex justify-center items-center">
+    <div className="">
+      <h1 className="pl-8 -mt-4 text-4xl font-semibold">Admin Dashboard</h1>
+      <Separator />
       <StaffMembersTable />
+      <BoardMembersTable />
     </div>
   );
 }
