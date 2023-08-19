@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { toast } from "@/components/ui/use-toast";
@@ -36,19 +35,12 @@ type ServiceFormValues = z.infer<typeof ServiceFormSchema>;
 export default function ServiceEditForm({ service }: { service: Service }) {
   const router = useRouter();
 
-  // const formServiceMember = {
-  //   ...service,
-  // };
-
-  // const [imageUrl, setImageUrl] = useState(formServiceMember.imageUrl);
-  const [icon, setIcon] = useState<string>(service.icon);
-
   const defaultValues: Partial<ServiceFormValues> = {
     status: service.status,
     frontpage: service.frontpage,
     name: service.name,
     description: service.description,
-    icon: icon,
+    icon: service.icon,
   };
 
   const form = useForm<ServiceFormValues>({
@@ -62,11 +54,10 @@ export default function ServiceEditForm({ service }: { service: Service }) {
   } = form;
 
   async function onSubmit(values: ServiceFormValues) {
-    const newServiceData = { ...values, icon: icon };
     const { id } = service;
     const result = await UpdateServiceAction({
       id,
-      newServiceData,
+      values,
     });
 
     if (result?.error) {
@@ -143,7 +134,10 @@ export default function ServiceEditForm({ service }: { service: Service }) {
                 <FormLabel>Icon</FormLabel>
                 <FormControl>
                   <div className="flex items-center space-x-2">
-                    <IconComboBox {...field} value={icon} setIcon={setIcon} />
+                    <IconComboBox
+                      icon={field.value}
+                      setIcon={(name, value) => form.setValue("icon", value)}
+                    />
                   </div>
                 </FormControl>
                 <FormMessage />

@@ -13,10 +13,10 @@ type NewServiceData = {
 
 export async function UpdateServiceAction({
   id,
-  newServiceData: service,
+  values: service,
 }: {
   id: string;
-  newServiceData: NewServiceData;
+  values: NewServiceData;
 }) {
   try {
     await prisma.service.update({
