@@ -25,7 +25,6 @@ import { Service } from "@prisma/client";
 import { useState } from "react";
 import { UpdateServicesOrderAction } from "@/actions/update-services-order-action";
 import { toast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
 
 export default function DndServices({ services }: { services: Service[] }) {
   const [items, setItems] = useState(services);
@@ -41,7 +40,7 @@ export default function DndServices({ services }: { services: Service[] }) {
     ) {
       return;
     }
-    
+
     if (type === "group") {
       const reorderedItems = [...items];
       const sourceIndex = source.index;
@@ -49,7 +48,7 @@ export default function DndServices({ services }: { services: Service[] }) {
 
       const [removedItem] = reorderedItems.splice(sourceIndex, 1);
       reorderedItems.splice(destinationIndex, 0, removedItem);
-      
+
       setItems(reorderedItems);
       const result = await UpdateServicesOrderAction(reorderedItems);
       if (result?.error) {
@@ -62,14 +61,13 @@ export default function DndServices({ services }: { services: Service[] }) {
         await revalidate("/");
         await revalidate("/services");
       }
-      
     }
-    return
+    return;
   };
 
   return (
     <DragDropContext onDragEnd={handleDragDrop}>
-      <Droppable droppableId="droppable" type="group">
+      <Droppable droppableId="services" type="group">
         {(provided, snapshot) => (
           <Table
             ref={provided.innerRef}
@@ -107,10 +105,10 @@ export default function DndServices({ services }: { services: Service[] }) {
                         "bg-teal-100/80": snapshot.isDragging,
                       })}
                     >
-                      <TableCell className="font-medium w-1/5">
+                      <TableCell className="w-1/5 font-medium">
                         {service.name}
                       </TableCell>
-                      <TableCell className="font-medium w-2/5">
+                      <TableCell className="w-2/5 font-medium">
                         {service.description}
                       </TableCell>
                       <TableCell className="font-medium">
