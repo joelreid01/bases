@@ -63,7 +63,7 @@ export default function DndBoardMembers({
           description: result.error,
         });
       } else {
-        toast({ description: "Service was updated successfully." });
+        toast({ description: "Board member order was updated successfully." });
         await revalidate("/team");
       }
     }
@@ -72,7 +72,7 @@ export default function DndBoardMembers({
 
   return (
     <DragDropContext onDragEnd={handleDragDrop}>
-      <Droppable droppableId="boardmembers" type="group">
+      <Droppable droppableId="boardMembers" type="group">
         {(provided, snapshot) => (
           <Table
             ref={provided.innerRef}
@@ -130,7 +130,7 @@ export default function DndBoardMembers({
                           </AvatarFallback>
                         </Avatar>
                       </TableCell>
-                      <TableCell className="w-[14%]">
+                      <TableCell className="text-center w-[14%]">
                         {person.status === "PUBLISHED" ? (
                           <div
                             className={cn(
