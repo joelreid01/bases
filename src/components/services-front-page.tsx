@@ -13,7 +13,7 @@ export default function ServicesFrontPage({
   services: Service[];
 }) {
   return (
-    <section className="relative isolate pt-16 pb-24 lg:pt-24 lg:pb-32">
+    <section className="relative pt-16 pb-24 isolate lg:pt-24 lg:pb-32">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -112,7 +112,7 @@ export default function ServicesFrontPage({
               </motion.div>
             ))}
           </dl>
-          <div className="flex justify-start xl:justify-center pt-8">
+          <div className="flex justify-start pt-8 xl:justify-center">
             <Link
               href="/services"
               className={cn(
