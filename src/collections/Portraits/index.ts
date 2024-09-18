@@ -10,7 +10,7 @@ export const Portraits: CollectionConfig = {
   slug: 'portraits',
   labels: {
     singular: 'Portrait',
-    plural: 'Portrait',
+    plural: 'Portraits',
   },
   access: {
     read: anyone,
