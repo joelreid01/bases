@@ -16,7 +16,7 @@ export const AboutUs: Block = {
     {
       name: 'images',
       type: 'upload',
-      relationTo: 'landscapes',
+      relationTo: 'media',
       hasMany: true,
     },
   ],

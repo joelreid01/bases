@@ -4,9 +4,9 @@ import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carouse
 import Autoplay from 'embla-carousel-autoplay'
 import Fade from 'embla-carousel-fade'
 import Image from 'next/image'
-import { Landscape } from '@/payload-types'
+import { Media } from '@/payload-types'
 
-export default function AboutUsCarousel({ images }: { images: Landscape[] }) {
+export default function AboutUsCarousel({ images }: { images: Media[] }) {
   if (!images) return null
 
   return (
