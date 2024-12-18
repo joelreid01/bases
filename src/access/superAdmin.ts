@@ -1,9 +1,8 @@
-import type { Access, AccessArgs, User } from 'payload'
+import type { AccessArgs } from 'payload'
 import { checkRole } from './checkRole'
+import { User } from '@/payload-types'
 
-type IsSuperAdmin = (args: AccessArgs<User>) => boolean
-
-export const superAdmin: IsSuperAdmin = ({ req: { user } }) => {
+export const superAdmin = ({ req: { user } }: AccessArgs<User>) => {
   if (!user) return false
   return checkRole('superAdmin', user)
 }
